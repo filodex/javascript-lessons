@@ -210,11 +210,67 @@ function objPrototype() {
 
 /**
  * Современные же методы это:
-Object.create(proto, [descriptors]) – создаёт пустой объект со свойством [[Prototype]], указанным как proto, и необязательными дескрипторами свойств descriptors.
-Object.getPrototypeOf(obj) – возвращает свойство [[Prototype]] объекта obj.
-Object.setPrototypeOf(obj, proto) – устанавливает свойство [[Prototype]] объекта obj как proto.
+ Object.create(proto, [descriptors]) – создаёт пустой объект со свойством [[Prototype]], указанным как proto, и необязательными дескрипторами свойств descriptors.
+ Object.getPrototypeOf(obj) – возвращает свойство [[Prototype]] объекта obj.
+ Object.setPrototypeOf(obj, proto) – устанавливает свойство [[Prototype]] объекта obj как proto.
  */
 
 /**
- *
+ * Обработка любой не пойманной ошибки
  */
+process.on('uncaughtException', (err, data) => {
+    console.log('heheY', err, data)
+})
+
+/** global keys:
+ * [
+  'Object',               'Function',          'Array',
+  'Number',               'parseFloat',        'parseInt',
+  'Infinity',             'NaN',               'undefined',
+  'Boolean',              'String',            'Symbol',
+  'Date',                 'Promise',           'RegExp',
+  'Error',                'AggregateError',    'EvalError',
+  'RangeError',           'ReferenceError',    'SyntaxError',
+  'TypeError',            'URIError',          'globalThis',
+  'JSON',                 'Math',              'console',
+  'Intl',                 'ArrayBuffer',       'Uint8Array',
+  'Int8Array',            'Uint16Array',       'Int16Array',
+  'Uint32Array',          'Int32Array',        'Float32Array',
+  'escape',               'unescape',          'eval',
+  'isFinite',             'isNaN',             'global',
+  'process',              'Buffer',            'atob',
+  'btoa',                 'URL',               'URLSearchParams',
+  'TextEncoder',          'TextDecoder',       'AbortController',
+  'AbortSignal',          'EventTarget',       'Event',
+  'MessageChannel',       'MessagePort',       'MessageEvent',
+  'clearInterval',        'clearTimeout',      'setInterval',
+  'setTimeout',           'queueMicrotask',    'performance',
+  'clearImmediate',       'setImmediate',      'SharedArrayBuffer',
+  'Atomics',              'WebAssembly'
+]
+ */
+
+/**
+ * Выполнение и создание процессов
+ */
+import path from 'path'
+import fs from 'fs'
+import { exec, spawn } from 'child_process'
+
+/**exec - чтобы 1 раз выполнить команду и вернуть результат */
+function execExample() {
+    exec(`node child.js ${'jopa'}`, (err, stdout, stderr) => {
+        console.log(stdout)
+    })
+    exec('pwd', (err, stdout, stderr) => {
+        console.log('heheY', err, stdout, stderr)
+    })
+}
+
+/** Собитино ориентированный spawn */
+function spawnExample() {
+    let child = spawn('node', ['child.js', 'POPO'])
+    child.stdout.on('data', (data) => {
+        console.log(String(data))
+    })
+}
