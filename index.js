@@ -287,3 +287,10 @@ function classExample(){
      alert(this.name);
     };
 }
+
+class Rabbit extends Animal {
+  // генерируется для классов-потомков, у которых нет своего конструктора
+  constructor(...args) {
+    super(...args);
+  }
+}
