@@ -294,3 +294,64 @@ class Rabbit extends Animal {
     super(...args);
   }
 }
+
+
+function staticMethodExample(){
+    class User {
+      static staticMethod() {
+        alert(this === User);
+      }
+    }
+
+User.staticMethod();}
+// Статические методы и свойства наследуются и используются для... (save(item), remove...)
+
+// Приватные и защищённые методы и свойства
+// Защищённые свойства обычно начинаются с префикса _
+function classWithGetterSetterAndPrivateVar(){
+    class CoffeeMachine {
+      _waterAmount = 0;
+
+      set waterAmount(value) {
+        if (value < 0) throw new Error("Отрицательное количество воды");
+        this._waterAmount = value;
+      }
+
+      get waterAmount() {
+        return this._waterAmount;
+      }
+
+      constructor(power) {
+        this._power = power;
+      }
+
+    }
+
+    // создаём новую кофеварку
+    let coffeeMachine = new CoffeeMachine(100);
+
+    // устанавливаем количество воды
+    coffeeMachine.waterAmount = -10; 
+}
+
+// Здесь мы использовали синтаксис геттеров/сеттеров.
+
+// Но в большинстве случаев использование функций get.../set... предпочтительнее:
+
+class CoffeeMachine {
+  _waterAmount = 0;
+
+  setWaterAmount(value) {
+    if (value < 0) throw new Error("Отрицательное количество воды");
+    this._waterAmount = value;
+  }
+
+  getWaterAmount() {
+    return this._waterAmount;
+  }
+}
+// Если нет сеттера, то свойство нельзя записать    
+// Защищённые поля наследуются
+
+
+
