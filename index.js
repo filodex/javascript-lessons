@@ -335,7 +335,6 @@ function classWithGetterSetterAndPrivateVar(){
 }
 
 // Здесь мы использовали синтаксис геттеров/сеттеров.
-
 // Но в большинстве случаев использование функций get.../set... предпочтительнее:
 
 class CoffeeMachine {
@@ -353,5 +352,40 @@ class CoffeeMachine {
 // Если нет сеттера, то свойство нельзя записать    
 // Защищённые поля наследуются
 
+// Статические свойства и методы часто используются с работы с объектами этого класса
+// Мы также можем присвоить метод самому классу. Такие методы называются статическими.
+class User {
+  static staticMethod() {
+    alert(this === User);
+  }
+}
 
+User.staticMethod();
+// Это фактически то же самое, что присвоить метод напрямую как свойство функции:
 
+class User { }
+
+User.staticMethod = function() {
+  alert(this === User);
+};
+
+// Также через статик метод можно создавать объекты с заданными параметрами
+class Article {
+  constructor(title, date) {
+    this.title = title;
+    this.date = date;
+  }
+  static createTodays() {
+    // помним, что this = Article
+    return new this("Сегодняшний дайджест", new Date());
+  }
+}
+
+// Статические методы недоступны для отдельных объектов
+
+// Также нам доступны статические свойства
+class Article {
+  static publisher = "Илья Кантор";
+}
+
+alert( Article.publisher ); // Илья Кантор
