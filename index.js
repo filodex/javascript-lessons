@@ -389,3 +389,13 @@ class Article {
 }
 
 alert( Article.publisher ); // Илья Кантор
+
+// Проверка класса: "instanceof"
+// Оператор instanceof позволяет проверить, к какому классу принадлежит объект, с учётом наследования.
+// obj instanceof Class
+
+// также объект является инствнсов всех родителей
+alert( arr instanceof Array ); // true
+alert( arr instanceof Object ); // true
+
+
