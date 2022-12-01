@@ -450,5 +450,26 @@ throw <объект ошибки>
 //А в браузере мы можем присвоить функцию специальному свойству window.onerror, которая будет вызвана в случае необработанной ошибки.
 
 
+// Streams
+import stream from 'stream'
+
+const writableStream = new stream.Writable({
+    write: (chunk, encoding, callback) => {
+        console.log(`New chunk: ${chunk}`)
+        callback()
+    },
+})
+
+writableStream.write('gogo')
+proces.stdin.pipe(writableStream)
+
+const readableStream = new stream.Readable({
+    read: () => {},
+})
+
+readableStream.push('GIGI')
+readableStream.push(null)
+
+readableStream.pipe(process.stdout)
 
 
